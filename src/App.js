@@ -1,45 +1,40 @@
-import React from 'react';
+import React from "react";
 
-import Header from './components/Header';
-import AddedFeatures from './components/AddedFeatures';
-import AdditionalFeatures from './components/AdditionalFeatures';
-import Total from './components/Total';
+import Header from "./components/Header";
+import AddedFeatures from "./components/AddedFeatures";
+import AdditionalFeatures from "./components/AdditionalFeatures";
+import Total from "./components/Total";
 
-import { connect } from 'react-redux';
-import { addFeature, removeFeature } from './actions/actions';
+import { connect } from "react-redux";
 
-const App = (props) => {
-  
-  const removeFeature = item => {
-    props.removeFeature(item);
-  };
+import { removeFeature, buyItem } from "./actions/actions";
 
-  const addFeature = item => {
-    props.addFeature(item);
-  };
-
+const App = props => {
   return (
     <div className="boxes">
       <div className="box">
         <Header car={props.car} />
-        <AddedFeatures car={props.car} addFeature={addFeature}/>
+        <AddedFeatures car={props.car} />
       </div>
       <div className="box">
-        <AdditionalFeatures addFeature={addFeature} additionalFeatures={props.additionalFeatures} removeFeature={props.removeFeature}/>
+        <AdditionalFeatures />
         <Total car={props.car} additionalPrice={props.additionalPrice} />
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  console.log(state); 
+const mapStateToProps = state => {
+  console.log("STATE OF REDUX", state);
+
   return {
-    additionalPrice: state.additionalPrice,
     car: state.car,
     additionalFeatures: state.additionalFeatures,
-    removeFeature: state.removeFeature
-  }
-}
+    additionalPrice: state.additionalPrice
+  };
+};
 
-export default connect(mapStateToProps, {addFeature, removeFeature}) (App);
+export default connect(
+  mapStateToProps,
+  { removeFeature, buyItem }
+)(App);
