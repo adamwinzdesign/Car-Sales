@@ -25,7 +25,7 @@ const App = props => {
 };
 
 const mapStateToProps = state => {
-  console.log("STATE OF REDUX", state);
+  // console.log("STATE OF REDUX", state);
 
   return {
     car: state.car,

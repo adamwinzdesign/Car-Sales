@@ -32,6 +32,7 @@ export default function reducer(state = initialState, action) {
     case BUY_ITEM:
       return {
         ...state,
+        // filter is only returning the additionalFeatures that were not included in the action.payload, taking them out of the additional features section
         additionalFeatures: [...state.additionalFeatures.filter(item => item.id !== action.payload.id)],
         car: {
           ...state.car,
