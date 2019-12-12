@@ -11,12 +11,10 @@ import { addFeature, removeFeature } from './actions/actions';
 const App = (props) => {
   
   const removeFeature = item => {
-    // dispatch an action here to remove an item
     props.removeFeature(item);
   };
 
-  const buyItem = item => {
-    // dipsatch an action here to add an item
+  const addFeature = item => {
     props.addFeature(item);
   };
 
@@ -24,10 +22,10 @@ const App = (props) => {
     <div className="boxes">
       <div className="box">
         <Header car={props.car} />
-        <AddedFeatures car={props.car} />
+        <AddedFeatures car={props.car} addFeature={addFeature}/>
       </div>
       <div className="box">
-        <AdditionalFeatures buyItem={buyItem} additionalFeatures={props.additionalFeatures} removeFeature={props.removeFeature}/>
+        <AdditionalFeatures addFeature={addFeature} additionalFeatures={props.additionalFeatures} removeFeature={props.removeFeature}/>
         <Total car={props.car} additionalPrice={props.additionalPrice} />
       </div>
     </div>
@@ -35,7 +33,7 @@ const App = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log(state); 
   return {
     additionalPrice: state.additionalPrice,
     car: state.car,
